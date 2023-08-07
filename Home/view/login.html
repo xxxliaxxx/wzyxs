@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>网侦研学社 | 用户登录</title>
+<link rel="stylesheet" type="text/css" href="Public/home/CSS/bootstrap-3.1.1.min.css">
+<link rel="stylesheet" type="text/css" href="Public/home/CSS/login/login.css">
+<link rel="stylesheet" type="text/css" href="Public/home/CSS/login/login_ex.css">
+<script src="Public/home/JS/jquery.min.js"></script>
+
+</head>
+
+<body class="user-select">
+<div class="container">
+  <div class="siteIcon"><img src="Public/home/images/home.jpg" alt="" data-toggle="tooltip" data-placement="top" title="欢迎登录网侦研学社！" draggable="false" /></div>
+  <form action="?c=Login&a=loginCheck" method="post" autocomplete="off" class="form-signin" onsubmit="return checkForm()">
+    <h2 class="form-signin-heading">用户登录</h2>
+    <label for="userName" class="sr-only">用户名</label>
+    <input type="text" id="userName" name="username" class="form-control" placeholder="请输入用户名" required autofocus autocomplete="off" maxlength="10">
+    <label for="userPwd" class="sr-only">密码</label>
+    <input type="password" id="userPwd" name="userpwd" class="form-control" placeholder="请输入密码" required autocomplete="off" maxlength="18">
+
+    <div id="captcha-box" class="form-control clearfix">
+      <label for="captcha" class="sr-only">验证码</label>
+      <input type="text" id="captcha" name="captcha" class="col-md-7" placeholder="请输入验证码" required autocomplete="off" maxlength="4">
+      <img class="col-md-5" id="captcha-img" src="?c=Login&a=captcha" onclick="this.src='?c=Login&a=captcha&' + Math.random()" alt="lost">
+    </div>
+    <button class="btn btn-lg btn-primary" type="submit" name="submitButton" id="signinSubmit">登录</button>
+    <button class="btn btn-lg btn-info" type="button" name="submitButton" id="registerSubmit">注册</button>
+
+  </form>
+  <div class="footer">
+    <p><a href="index.php" data-toggle="tooltip" data-placement="left" title="不知道自己在哪?">回到首页 →</a></p>
+  </div>
+</div>
+<script src="Public/home/JS/bootstrap-3.1.1.min.js"></script>
+<script>
+$('[data-toggle="tooltip"]').tooltip();
+window.oncontextmenu = function(){
+	//return false;
+};
+$('.siteIcon img').click(function(){
+	window.location.reload();
+});
+
+//初始设置用户名为当前焦点
+function setFocus() {
+    //获取用户名的输入框对象
+    let username = $("#userName");
+    if(username.attr("value") === ""){
+      username.focus();
+    }
+    else {
+        username.select();
+    }
+}
+
+//调用函数
+window.onload = setFocus;
+
+//前端表单验证
+function checkForm() {
+  if(!$("#userName").val()) {
+    window.alert("请输入用户名");
+    $("#userName").focus(); //重新定位光标
+    return false;
+  }
+  else if(!$("#userPwd").val()) {
+    window.alert("请输入密码");
+    $("#userPwd").focus(); //重新定位光标
+    return false;
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="message">
+    <h1>以下用户添加失败</h1>
+
+    <table>
+      <tr>
+        <th>姓名</th>
+        <th>用户名</th>
+        <th>失败原因</th>
+      </tr>
+      <{foreach $fail as $user}>
+        <tr>
+          <td><{$user.name}></td>
+          <td><{$user.username}></td>
+          <td><{$user.reasonMsg}></td>
+        </tr>
+      <{/foreach}>
+    </table>
+    <p>点击 <a href="<{$page}>">这里</a> 跳转.</p>
+  </div>
+
+</div>
+<style>
+body {
+  background: linear-gradient(to bottom, #f7f7f7, #e5e5e5);
+}
+
+a {
+  text-decoration: none;
+  color: #3399CC;
+}
+
+.container {
+  position: absolute;
+  margin: 20px;
+  top: 40%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.message {
+  animation: fadein 0.4s ease-in-out;
+}
+
+.message #countdown {
+  color: #3399CC;
+}
+
+.message h1 {
+  color: #FC5531;
+}
+
+@keyframes fadein {
+  from { opacity: 0.1; }
+  to { opacity: 1; }
+}
+
+table {
+  border-collapse: collapse;
+  text-align: center;
+}
+
+table tr td {
+  max-width: 400px;
+  min-width: 50px;
+}
+table td,th{
+  border: 1px #0a001f solid;
+  padding: 5px;
+}
+</style>

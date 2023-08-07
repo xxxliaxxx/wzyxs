@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网侦研学社 | 文章</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="Public/home/CSS/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="Public/home/CSS/lightbox.css">
+    <!-- jQuery (necessary JavaScript plugins) -->
+    <script src="Public/home/JS/bootstrap-3.1.1.min.js"></script>
+    <!-- Custom Theme files -->
+    <link href="Public/home/CSS/style.css" rel='stylesheet' type='text/css' />
+    <!-- Custom Theme files -->
+
+    <link rel="stylesheet" href="Public/home/CSS/blog/main.css">
+
+    <!--//theme style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+
+    <script src="Public/home/JS/jquery.min.js"></script>
+</head>
+<body>
+<!-- header -->
+<div class="top-header">
+    <div class="container">
+        <div class="logo">
+            <h1><a href="?c=Index&a=index"><span class="glyphicon glyphicon-road" aria-hidden="true"></span>网侦研学社</a></h1>
+        </div>
+    </div>
+</div>
+<!---->
+<div class="top-menu">
+    <div class="hello"><a href="admin.php">进入后台</a></div>
+    <{if $isLogin}>
+        <div class="hello">hello！<{$smarty.session.username}></div>
+    <{/if}>
+    <div class="container">
+        <div class="content white">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <!--/navbar header-->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="?c=Index&a=index">主页</a></li>
+                        <li class="active"><a href="?c=Index&a=blog">笔记分享</a></li>
+                        <li class="dropdown" style="cursor: pointer">
+                            <a class="scroll dropdown-toggle" data-toggle="dropdown">新生赛<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="scroll" href="?c=Index&a=race">新生赛入口</a></li>
+                                <li><a class="scroll" href="?c=Index&a=rank">新生赛排行</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="?c=Index&a=member">成员名单</a></li>
+                        <li><a href="?c=Index&a=medal">画廊</a></li>
+                        <li><a href="?c=Index&a=contact">联系我们</a></li>
+                        <li>
+                            <{if $isLogin}>
+                                <a href="?c=Login&a=logout" onclick="return confirm('您确定要登出？')">登出</a>
+                            <{else}>
+                                <a href="?c=Login&a=index">登录</a>
+                            <{/if}>
+                        </li>
+
+                    </ul>
+                </div>
+                <!--/navbar collapse-->
+            </nav>
+            <!--/navbar-->
+        </div>
+        <div class="clearfix"></div>
+        <script type="text/javascript" src="Public/home/JS/jquery.min.js"></script>
+        <script type="text/javascript" src="Public/home/JS/bootstrap-3.1.1.min.js"></script>
+    </div>
+</div>
+
+<div id="blog-banner" class="banner">
+    <div id="blog-container" class="container">
+        <div class="col-sm-8">
+        <h1 class="blog-title"><{$article.title}></h1>
+        <div class="blog-info">
+            <span class="avatar"><img src="<{$user.pic}>" alt="avatar"></span>
+            <span><{$user.username}></span> |
+            <span data-aid="<{$article.id}>"><{$article.praise}></span>
+            <span class="glyphicon glyphicon-thumbs-up blog-hot" aria-hidden="true" onmouseover="this.style.cursor='pointer'" onclick="praise(<{$article.id}>)"></span> |
+            <span><{$article.addate|date_format:'%Y-%m-%d %H:%M'}></span>
+            <label class="label label-warning"><{$category.name}></label>
+        </div>
+        <div class="blog-content">
+            <blockquote>
+                <p><{$article.description}></p>
+            </blockquote>
+            <div id="content">
+                <textarea style="" placeholder="markdown"><{$article.content}></textarea>
+            </div>
+        </div>
+    </div>
+        <div class="col-sm-4 hidden-xs">
+            <div class="side-bar-card clearfix">
+                <div class="col-sm-5">
+                    <a href="?c=Index&a=blog">
+                        <img src="Public/home/images/side.png" alt="lost">
+                    </a>
+
+                </div>
+                <div class="col-sm-7 side-bar-introduction">
+                    <div class="">代码改变世界</div>
+                    <div class="side-bar-phone">作者联系电话：<{$user.tel}></div>
+                </div>
+            </div>
+            <div class="side-bar-card side-bar-recommend clearfix">
+                <div class="side-bar-title">推荐阅读</div>
+                <div class="side-bar-body">
+                    <div class="side-bar-list">
+                        <{foreach $recommends as $recommend}>
+                            <div class="side-bar-item">
+                                <a href="?c=Index&a=article&id=<{$recommend.id}>" class="side-item-title"><{$recommend.title}></a>
+                                <div class="side-item-info">
+                                    <{$recommend.praise}>
+                                    <span class="glyphicon glyphicon-thumbs-up blog-hot" aria-hidden="true"></span> |
+                                    <{$recommend.addate|date_format:'%Y-%m-%d %H:%M'}>
+                                </div>
+                            </div>
+                        <{/foreach}>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- footer -->
+<div class="cqpc">
+    <div class="footer">
+        <div class="container">
+            <div class="footer-grids">
+                <div class="col-md-6 news-ltr">
+                    <img style="margin-bottom: 20px" src="Public/home/images/cqpc.png" alt="">
+                    <p style="margin: 20px 0;color: #F0F0EE">地址：重庆市沙坪坝区大学城景铮路</p>
+                    <p style="margin: 20px 0;color: #F0F0EE">邮编：401331</p>
+
+                </div>
+                <div style="color: #F0F0EE" class="col-md-6 news-ltr">
+                    <p style="margin: 20px 0;color: #F0F0EE">信息管理：重庆警察学院网侦研学社</p>
+                    <p style="margin: 20px 0;color: #F0F0EE">技术维护：网侦研学社开发组</p>
+                    <span>今日访问量：<{$visLog.today}></span>|
+                    <span>昨日访问量：<{$visLog.yesterday}></span>|
+                    <span>总访问量：<{$visLog.total}></span>|
+                    <span>本月访问量：<{$visLog.month}></span>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="copywrite">
+    <div class="container">
+        <p> © 2023 网侦研学社. All rights reserved</p>
+    </div>
+</div>
+
+<link rel="stylesheet" href="Public/home/lib/mdEditor/css/editormd.preview.css"/>
+<script src="Public/home/lib/mdEditor/lib/marked.min.js"></script>
+<script src="Public/home/lib/mdEditor/lib/prettify.min.js"></script>
+<script src="Public/home/lib/mdEditor/lib/raphael.min.js"></script>
+<script src="Public/home/lib/mdEditor/lib/underscore.min.js"></script>
+<script src="Public/home/lib/mdEditor/lib/sequence-diagram.min.js"></script>
+<script src="Public/home/lib/mdEditor/lib/flowchart.min.js"></script>
+<script src="Public/home/lib/mdEditor/lib/jquery.flowchart.min.js"></script>
+<script src="Public/home/lib/mdEditor/editormd.js"></script>
+<script>
+
+    var testEditor;
+    $(function () {
+        testEditor = editormd.markdownToHTML("content", {//注意：这里是上面DIV的id
+            htmlDecode: "style,script,iframe",
+            emoji: true,
+            taskList: true,
+            tocm: true,
+            tex: true, // 默认不解析
+            flowChart: true, // 默认不解析
+            sequenceDiagram: true, // 默认不解析
+            codeFold: true
+        });});
+
+    function praise(id) {
+        $.post(
+            "?c=Blog&a=praise",
+            {
+                id: id
+            },
+            function (data) {
+                $("span[data-aid='"+ id +"']").text(data)
+            }
+        )
+    }
+</script>
+</body>
+</html>

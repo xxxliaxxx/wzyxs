@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>个人主页 - 网侦社后台管理系统</title>
+  <link rel="stylesheet" type="text/css" href="Public/admin/CSS/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="Public/admin/CSS/personal.css">
+  <link rel="apple-touch-icon-precomposed" href="Public/admin/images/icon/icon.png">
+  <link rel="shortcut icon" href="Public/admin/images/icon/favicon.ico">
+  <script src="Public/admin/JS/jquery-2.1.4.min.js"></script>
+</head>
+
+<body class="user-select">
+<nav class="main-navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="container">
+          <div class="menu menu-logo">
+            <a class="navbar-brand menu-title" href="?c=Index&a=main" title="返回后台首页">
+              <img src="https://agougou-1257697582.cos.ap-chengdu.myqcloud.com/PictureBeds/202111281316429.jpg" height="45" style="margin: -15px -15px 35px 0px;" alt="网侦研学社后台">
+            </a>
+          </div>
+          <div class="collapse navbar-collapse" id="main-menu">
+            <ul class="menu">
+              <li class="nav-current"><a href="?c=Index&a=main">返回</a></li>&nbsp;|
+              <li><a href="?c=Login&a=logout" onClick="if(!confirm('是否确认退出？'))return false;">退出登录</a></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<section class="content-wrap">
+  <div class="container">
+    <div class="row">
+      <main class="col-md-8 main-content">
+        <h4>
+          nothing yet
+        </h4>
+
+      </main>
+      <aside class="col-md-4 sidebar">
+        <div class="widget">
+          <h4 class="title">
+            "关于"
+          </h4>
+          <div class="card-bg" style="background-image: url(https://agougou-1257697582.cos.ap-chengdu.myqcloud.com/PictureBeds/202306021218072.jpg); ">
+
+          </div>
+          <div class="card">
+            <div class="card-info">
+              <{if $user.pic}>
+                <a href="" title="点击更换头像" data-toggle="modal" data-target="#changeAvatar">
+                  <img class="card-info-img" src="<{$user.pic}>" alt="">
+                </a>
+              <{else}>
+                <a href="" title="" data-toggle="modal" data-target="#changeAvatar">
+                  <img class="card-info-img" src="https://agougou-1257697582.cos.ap-chengdu.myqcloud.com/PictureBeds/202307141929493.png" alt="">
+                </a>
+              <{/if}>
+
+              <div class="card-info-name"><{$user.username}></div>
+              <{if $user.signature}>
+                <div class="card-info-description">
+                  <a href="" title="点击修改签名" data-toggle="modal" data-target="#changeSignature">
+                    <{$user.signature}>
+                  </a>
+                </div>
+              <{else}>
+                <div class="card-info-description">
+                  <a href="" data-toggle="modal" data-target="#changeSignature">
+                    点击添加您的签名
+                  </a>
+                </div>
+              <{/if}>
+
+
+            </div>
+            <div class="card-data">
+              <div class="card-data-item">
+                <div class="headline">文章</div>
+                <div class="length-num"><{$articleRows}></div>
+              </div>
+              <div class="card-data-item">
+                <div class="headline">参与考试</div>
+                <div class="length-num"><{$examRows}></div>
+              </div>
+              <div class="card-data-item">
+                <div class="headline">最高排名</div>
+                <div class="length-num"><{$maxRank}></div>
+              </div>
+            </div>
+            <div class="card-text">
+              <span>已在风雨中度过 <{$time}></span>
+
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+<!--修改头像模态框-->
+<div class="modal fade" id="changeAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" >更换头像</h4>
+      </div>
+      <form action="?c=Personal&a=updateAvatar" method="POST">
+        <div class="modal-body">
+
+          <input class="form-control" type="text" name="url" value="<{$user.pic}>" placeholder="输入头像图片url">
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-info">提交</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!--修改签名模态框-->
+<div class="modal fade" id="changeSignature" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" >修改签名</h4>
+      </div>
+      <form action="?c=Personal&a=updateSignature" method="POST">
+        <div class="modal-body">
+
+          <input class="form-control" type="text" placeholder="在这里输入签名" name="signature" value="<{$user.signature}>">
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-info">提交</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="Public/admin/JS/bootstrap.min.js"></script>
+<script src="Public/admin/JS/admin-scripts.js"></script>
+</body>
+</html>

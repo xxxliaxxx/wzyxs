@@ -1,0 +1,28 @@
+   # 阻止访问后缀为 .log 的文件
+   <FilesMatch "\.log$">
+     Order allow,deny
+     Deny from all
+   </FilesMatch>
+
+   # 阻止访问后缀为 .exe 的文件
+   <FilesMatch "\.exe$">
+     Order allow,deny
+     Deny from all
+   </FilesMatch>
+
+   # 阻止访问后缀为 .lock的文件
+   <FilesMatch "\.lock$">
+     Order allow,deny
+     Deny from all
+   </FilesMatch>
+
+   # 阻止访问后缀为 .json的文件
+   <FilesMatch "\.json$">
+     Order allow,deny
+     Deny from all
+   </FilesMatch>
+
+   <IfModule mod_rewrite.c>
+     RewriteEngine On
+     RewriteRule ^(.*\/)?\.idea\/(.+)$ - [F]
+   </IfModule>

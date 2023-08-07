@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网侦研学社 | 新生赛</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="Public/home/CSS/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="Public/home/CSS/lightbox.css">
+    <!-- jQuery (necessary JavaScript plugins) -->
+    <script src="Public/home/JS/bootstrap-3.1.1.min.js"></script>
+    <!-- Custom Theme files -->
+    <link href="Public/home/CSS/style.css" rel='stylesheet' type='text/css' />
+    <!-- Custom Theme files -->
+
+
+    <!--//theme style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+
+    <script src="Public/home/JS/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="banner clearfix">
+
+
+    <div class="container" >
+        <div class="page-header">
+            <button class="btn btn-default" onclick="window.location.href='?c=Index&a=race'">返回</button>
+            <h1 class="text-center" style="color: #DC143C;"><{$msg}></h1>
+            <p id="countdown" class="text-center" style="margin-top: 10px;color: #DC143C"></p>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10" style="background-color: #F0F0EE;">
+                    <h2 class="text-center" style="margin-top: 20px"><{$paper.title}></h2>
+                    <h5 class="text-center" style="margin-top: 10px">(考试时间: <{$paper.deadline * 60}> 分钟&nbsp&nbsp&nbsp&nbsp&nbsp试卷满分: <{$paper.maxScore}> 分)</h5>
+
+                <h1 class="lead text-center"></h1>
+
+                <div class="table-responsive">
+                    <table id="paper-table" class="table table-hover">
+                        <tr class="info">
+                            <td>出题人:</td>
+                            <td><{$paper.author}></td>
+                        </tr>
+                        <tr class="info">
+                            <td>考试时间:</td>
+                            <td>
+                                <{$paper.startTime|date_format:'%Y-%m-%d %H:%M'}>
+                                ——
+                                <{($paper.startTime + $paper.deadline * 60 * 60)|date_format:'%Y-%m-%d %H:%M'}>
+                            </td>
+                        </tr>
+                        <tr class="info">
+                            <td>考试须知:</td>
+                            <td><{$paper.notice}></td>
+                        </tr>
+                    </table>
+                </div>
+                <{if $status == 1}>
+                    <button style="margin-top: 4px" class="btn btn-block" onclick="location.href='?c=Index&a=paper&id=<{$paper.id}>'">进入考试</button>
+                <{elseif $status == 2}>
+                    <button style="margin-top: 4px" class="btn btn-block" onclick="location.href='?c=Index&a=report&id=<{$paper.id}>'">查看我的考试报告</button>
+                <{/if}>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+
+
+    </div>
+    <style>
+
+        #paper-table tr td {
+            color: #0a001f;
+        }
+        #paper-table tr td:first-child {
+            text-align: right;
+        }
+        #paper-table tr td:last-child {
+            max-width: 200px
+        }
+    </style>
+</div>
+
+
+
+<!-- footer -->
+<div class="cqpc">
+    <div class="footer">
+        <div class="container">
+            <div class="footer-grids">
+                <div class="col-md-6 news-ltr">
+                    <img style="margin-bottom: 20px" src="Public/home/images/cqpc.png" alt="">
+                    <p style="margin: 20px 0;color: #F0F0EE">地址：重庆市沙坪坝区大学城景铮路</p>
+                    <p style="margin: 20px 0;color: #F0F0EE">邮编：401331</p>
+
+                </div>
+                <div style="color: #F0F0EE" class="col-md-6 news-ltr">
+                    <p style="margin: 20px 0;color: #F0F0EE">信息管理：重庆警察学院网侦研学社</p>
+                    <p style="margin: 20px 0;color: #F0F0EE">技术维护：网侦研学社开发组</p>
+                    <span>今日访问量：<{$visLog.today}></span>|
+                    <span>昨日访问量：<{$visLog.yesterday}></span>|
+                    <span>总访问量：<{$visLog.total}></span>|
+                    <span>本月访问量：<{$visLog.month}></span>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="copywrite">
+    <div class="container">
+        <p> © 2023 网侦研学社. All rights reserved</p>
+    </div>
+</div>
+
+<script>
+    //设置倒计时的结束时间（年、月 - 1、日、时、分、秒）
+    let countdownDate = <{$paper.startTime}> * 1000;
+
+    //每秒更新倒计时器
+    let x = setInterval(function () {
+        //获取当前时间
+        let now = new Date().getTime();
+
+        //计算距离结束时间还有多少毫秒
+        let distance = countdownDate - now;
+
+        //计算距离结束时间还有多少天、小时、分钟和秒
+        let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        let hours = Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        //将倒计时显示在元素中
+        $("#countdown").html(
+            "距离考试开始：" + days + "天 " + hours + "小时 " + minutes + "分钟 " + seconds + "秒 "
+        );
+
+        //如果倒计时已结束，显示一个提示信息
+        if (distance < 0) {
+            clearInterval(x);
+            $("#countdown").html("");
+        }
+    }, 1000);
+</script>
+</body>
+</html>

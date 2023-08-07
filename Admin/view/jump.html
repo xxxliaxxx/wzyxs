@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="message">
+    <h1><{$str}></h1>
+    <h2>在 <span id="countdown"><{$time}></span> 秒内跳转页面...</h2>
+    <p>点击 <a href="<{$page}>">这里</a> 立即跳转.</p>
+  </div>
+
+</div>
+<style>
+body {
+  background: linear-gradient(to bottom, #f7f7f7, #e5e5e5);
+}
+
+a {
+  text-decoration: none;
+  color: #3399CC;
+}
+
+.container {
+  position: absolute;
+  margin: 20px;
+  top: 40%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.message {
+  animation: fadein 0.4s ease-in-out;
+}
+
+.message #countdown {
+  color: #3399CC;
+}
+
+.message h1 {
+  color: #FC5531;
+}
+
+@keyframes fadein {
+  from { opacity: 0.1; }
+  to { opacity: 1; }
+}
+</style>
+<script>
+const countdownEl = document.getElementById('countdown');
+let countdown = <{$time}>;
+
+setInterval(() => {
+  countdown--;
+  countdownEl.textContent = countdown;
+}, 1000);
+
+setTimeout(() => {
+  window.location.href = '<{$page}>';
+}, <{$time}> * 1000);
+</script>

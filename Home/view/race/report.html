@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网侦研学社 | 新生赛</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="Public/home/CSS/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="Public/home/CSS/lightbox.css">
+    <!-- jQuery (necessary JavaScript plugins) -->
+    <script src="Public/home/JS/bootstrap-3.1.1.min.js"></script>
+    <!-- Custom Theme files -->
+    <link href="Public/home/CSS/style.css" rel='stylesheet' type='text/css' />
+    <!-- Custom Theme files -->
+
+    <link rel="stylesheet" type="text/css" href="Public/home/CSS/race/paper.css">
+
+
+    <!--//theme style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+
+    <script src="Public/home/JS/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="banner clearfix">
+    <div id="race" class="container">
+        <input type="hidden" name="paper_id" value="<{$paper.id}>">
+        <div class="race-head container">
+            <div class="race-title">
+                <ul>
+                    <li><a href="?c=Index&a=paper&id=<{$paper.id}>">&lt返回</a></li>
+                    <li>
+                            <span>
+                                <{$paper.title}>
+                            <small style="font-size: 60%">(考试时间: <{$paper.deadline * 60}> 分钟&nbsp&nbsp&nbsp&nbsp&nbsp试卷满分: <{$paper.maxScore}> 分)</small>
+                            </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="race-submit" style="font-size: 160%; margin-right: 20px">
+                你的得分：<font color="red"><{$userInfo.score}></font>
+            </div>
+
+        </div>
+
+        <div class="intro" style="padding-top: 60px">
+            <div class="table-responsive">
+                <table id="paper-table" class="table table-hover">
+                    <tr>
+                        <td>出题人:</td>
+                        <td><{$paper.author}></td>
+                    </tr>
+                    <tr>
+                        <td>考试须知:</td>
+                        <td><{$paper.notice}></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="ques">
+            <{if $quesInfo[1].count}>
+                <div class="ques-title clearfix">
+                        <span>
+                            单选/判断题（共<{$quesInfo[1].count}>题，共<{$quesInfo[1].score}>分）
+                        </span>
+                </div>
+                <{foreach $queses as $ques}>
+                    <{if $ques.type == '1'}>
+                        <div class="ques-content">
+                            <span>
+                                <{$ques.content}>(<{$ques.score}>分&nbsp&nbsp<small>你的得分:<{$userInfo["ques"][$ques.id]["score"]}></small>)
+                            </span>
+
+                        </div>
+                        <{foreach $ques.answer as $select}>
+                            <div class="ques-answer">
+                                <label>
+                                    <span id="ques_<{$ques.type}>_<{$ques.id}>"><{$select}></span>
+
+                                </label>
+                            </div>
+                        <{/foreach}>
+                        <div class="ques-footer">
+                            <span>正确答案：<{$userInfo["ques"][$ques.id]["correctAns"]}></span>
+                            <{if $userInfo["ques"][$ques.id]["isCorrect"]}>
+                                <span class="correct" style="color: #00FF00">你的答案：<{$userInfo["ques"][$ques.id]["ans"]}></span>
+                            <{else}>
+                                <span class="wrong" style="color: red">你的答案：<{$userInfo["ques"][$ques.id]["ans"]}></span>
+                            <{/if}>
+                            <span>解析：<{$ques.analysis}></span>
+                        </div>
+
+                    <{/if}>
+
+                <{/foreach}>
+            <{/if}>
+
+            <{if $quesInfo[2].count}>
+                <div class="ques-title clearfix">
+                        <span>
+                            多选题，每道题有两个及以上正确选项（共<{$quesInfo[2].count}>题，共<{$quesInfo[2].score}>分）
+                        </span>
+                </div>
+                <{foreach $queses as $ques}>
+                    <{if $ques.type == '2'}>
+                        <div class="ques-content">
+                            <span>
+                                <{$ques.content}>(<{$ques.score}>分&nbsp&nbsp<small>你的得分:<{$userInfo["ques"][$ques.id]["score"]}></small>)
+                            </span>
+                        </div>
+                        <{foreach $ques.answer as $select}>
+                            <div class="ques-answer">
+                                <label>
+                                    <span id="ques_<{$ques.type}>_<{$ques.id}>"><{$select}></span>
+                                </label>
+                            </div>
+                        <{/foreach}>
+                        <div class="ques-footer">
+                            <span>正确答案：<{implode("", $userInfo["ques"][$ques.id]["correctAns"])}></span>
+                            <{if $userInfo["ques"][$ques.id]["isCorrect"]}>
+                                <span class="correct" style="color: #00FF00">你的答案：<{implode("", $userInfo["ques"][$ques.id]["ans"])}></span>
+                            <{else}>
+                                <span class="wrong" style="color: red">你的答案：<{implode("", $userInfo["ques"][$ques.id]["ans"])}></span>
+                            <{/if}>
+                            <span>解析：<{$ques.analysis}></span>
+                        </div>
+                    <{/if}>
+                <{/foreach}>
+            <{/if}>
+
+            <{if $quesInfo[3].count}>
+                <div class="ques-title clearfix">
+                        <span>
+                            填空题（共<{$quesInfo[3].count}>题，共<{$quesInfo[3].score}>分）
+                        </span>
+                </div>
+                <{foreach $queses as $ques}>
+                    <{if $ques.type == '3'}>
+                        <div class="ques-content">
+                            <span>
+                                <{$ques.content}>(<{$ques.score}>分&nbsp&nbsp<small>你的得分:<{$userInfo["ques"][$ques.id]["score"]}></small>)
+                            </span>
+                        </div>
+                        <div class="ques-footer">
+                            <span>正确答案：<{implode("或", $userInfo["ques"][$ques.id]["correctAns"])}></span>
+                            <{if $userInfo["ques"][$ques.id]["isCorrect"]}>
+                                <span class="correct" style="color: #00FF00">你的答案：<{$userInfo["ques"][$ques.id]["ans"]}></span>
+                            <{else}>
+                                <span class="wrong" style="color: red">你的答案：<{$userInfo["ques"][$ques.id]["ans"]}></span>
+                            <{/if}>
+                            <span>解析：<{$ques.analysis}></span>
+                        </div>
+                    <{/if}>
+                <{/foreach}>
+            <{/if}>
+
+            <{if $quesInfo[4].count}>
+                <div class="ques-title clearfix">
+                        <span>
+                            简答题（共<{$quesInfo[4].count}>题，共<{$quesInfo[4].score}>分）
+                        </span>
+                </div>
+                <{foreach $queses as $ques}>
+                    <{if $ques.type == '4'}>
+                        <div class="ques-content">
+                            <span>
+                                <{$ques.content}>(<{$ques.score}>分&nbsp&nbsp<small>你的得分:<{$userInfo["ques"][$ques.id]["score"]}></small>)
+                            </span>
+                        </div>
+                        <div class="ques-footer">
+                            <span>参考答案：<{$userInfo["ques"][$ques.id]["correctAns"]}></span>
+                            <span>你的答案：<{$userInfo["ques"][$ques.id]["ans"]}></span>
+                            <span>解析：<{$ques.analysis}></span>
+                        </div>
+                    <{/if}>
+                <{/foreach}>
+            <{/if}>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<!-- footer -->
+<div class="cqpc">
+    <div class="footer">
+        <div class="container">
+            <div class="footer-grids">
+                <div class="col-md-6 news-ltr">
+                    <img style="margin-bottom: 20px" src="Public/home/images/cqpc.png" alt="">
+                    <p style="margin: 20px 0;color: #F0F0EE">地址：重庆市沙坪坝区大学城景铮路</p>
+                    <p style="margin: 20px 0;color: #F0F0EE">邮编：401331</p>
+
+                </div>
+                <div style="color: #F0F0EE" class="col-md-6 news-ltr">
+                    <p style="margin: 20px 0;color: #F0F0EE">信息管理：重庆警察学院网侦研学社</p>
+                    <p style="margin: 20px 0;color: #F0F0EE">技术维护：网侦研学社开发组</p>
+                    <span>今日访问量：<{$visLog.today}></span>|
+                    <span>昨日访问量：<{$visLog.yesterday}></span>|
+                    <span>总访问量：<{$visLog.total}></span>|
+                    <span>本月访问量：<{$visLog.month}></span>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="copywrite">
+    <div class="container">
+        <p> © 2023 网侦研学社. All rights reserved</p>
+    </div>
+</div>
+
+<script>
+
+    //添加题号
+    let zhNum = ['一', '二', '三', '四']
+    $(".ques .ques-title span").each(function (index) {
+        $(this).prepend(zhNum[index] + '、');
+    })
+
+    $(".ques .ques-content span").each(function (index) {
+        $(this).prepend((index + 1) + ".");
+    })
+
+</script>
+</body>
+</html>

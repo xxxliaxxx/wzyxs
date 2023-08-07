@@ -1,0 +1,324 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>网侦研学社 | 成员名单</title>
+	<link href="Public/home/CSS/bootstrap.css" rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="Public/home/CSS/lightbox.css">
+	<!-- jQuery (necessary JavaScript plugins) -->
+	<script src="Public/home/JS/bootstrap-3.1.1.min.js"></script>
+	<!-- Custom Theme files -->
+	<link href="Public/home/CSS/style.css" rel='stylesheet' type='text/css' />
+	<!-- Custom Theme files -->
+
+	<!--//theme style-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+
+	<script src="Public/home/JS/jquery.min.js"></script>
+
+</head>
+<body>
+	<!-- header -->
+	<div class="top-header">
+		 <div class="container">
+			 <div class="logo">
+				 <h1><a href="?c=Index&a=index"><span class="glyphicon glyphicon-road" aria-hidden="true"></span>网侦研学社</a></h1>
+			 </div>
+		 </div>
+	</div>
+	<!---->
+	<div class="top-menu">
+		<div class="hello"><a href="admin.php">进入后台</a></div>
+		<{if $isLogin}>
+			<div class="hello">hello！<{$smarty.session.username}></div>
+		<{/if}>
+		<div class="container">
+			<div class="content white">
+				<nav class="navbar navbar-default">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					 </div>
+					 <!--/navbar header-->
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						 <ul class="nav navbar-nav">
+							 <li><a href="?c=Index&a=index">主页</a></li>
+							 <li><a href="?c=Index&a=blog">笔记分享</a></li>
+							 <li class="dropdown" style="cursor: pointer">
+								 <a class="scroll dropdown-toggle" data-toggle="dropdown">新生赛<b class="caret"></b></a>
+								 <ul class="dropdown-menu">
+									 <li><a class="scroll" href="?c=Index&a=race">新生赛入口</a></li>
+									 <li><a class="scroll" href="?c=Index&a=rank">新生赛排行</a></li>
+								 </ul>
+							 </li>
+							 <li class="active"><a>成员名单</a></li>
+							 <li><a href="?c=Index&a=medal">画廊</a></li>
+							 <li><a href="?c=Index&a=contact">联系我们</a></li>
+							 <li>
+								 <{if $isLogin}>
+									 <a href="?c=Login&a=logout" onclick="return confirm('您确定要登出？')">登出</a>
+								 <{else}>
+									 <a href="?c=Login&a=index">登录</a>
+								 <{/if}>
+							 </li>
+
+						 </ul>
+					</div>
+					<!--/navbar collapse-->
+				</nav>
+				<!--/navbar-->
+			 </div>
+			<div class="clearfix"></div>
+			<script type="text/javascript" src="Public/home/JS/jquery.min.js"></script>
+			<script type="text/javascript" src="Public/home/JS/bootstrap-3.1.1.min.js"></script>
+		 </div>
+	</div>
+	<!---->
+	<div class="testimonal">
+		 <div class="container">
+			 <div class="testi-top">
+				 <h3>历届社长</h3>
+				 <p>网侦社的每一届都会选举一个社长，他们是社团的顶梁柱，处理着社团大大小小的事务，对整个社团进行管理，为社团的大家尽心尽力服务，从而创造一个良好的学习环境</p>
+			 </div>
+			 <div class="testi-slider">
+
+			 <script>
+							// You can also use "$(window).load(function() {"
+							$(function () {
+							  // Slideshow 4
+							  $("#slider2").responsiveSlides({
+								auto: true,
+								pager: true,
+								nav: false,
+								speed: 500,
+								namespace: "callbacks",
+								before: function () {
+								  $('.events').append("<li>before event fired.</li>");
+								},
+								after: function () {
+								  $('.events').append("<li>after event fired.</li>");
+								}
+							  });
+
+							});
+			 </script>
+			 <div  id="top" class="callbacks_container">
+				 <ul class="rslides" id="slider2">
+					 <{foreach $leaders as $leader}>
+						 <li>
+							 <div class="testimonial-grids">
+								 <div class="testimonial-left">
+									 <img src="<{$leader.pic}>" alt="Public/home/images/default.jpg" />
+								 </div>
+								 <div class="testimonial-right">
+									 <p><span>"</span><{$leader.description}><span>"</span>
+									 </p>
+									 <h5><{$leader.class}><{$leader.name}></h5>
+									 <h6><{$leader.skill}></h6>
+								 </div>
+								 <div class="clearfix"> </div>
+							 </div>
+						 </li>
+					 <{/foreach}>
+				 </ul>
+			  </div>
+			  </div>
+		 </div>
+	</div>
+	<!---->
+	<div id="destination" class="destination">
+		 <div class="container">
+			 <div class="destination-top">
+				 <h3>社团成员</h3>
+				 <p style="margin-bottom: 10px">网侦研学社的正式成员，自2018级以来，他们凭借自身过硬的技术力，通过了网侦社考核，成为了网侦社的一员。他们各个身怀绝技，在自己专研的领域拥有一定的实力，在以后的工作中能更胜一筹！</p>
+			 </div>
+			 <h3 class="member">22级</h3>
+			 <div class="destintn-grids">
+				 <{foreach $members as $member}>
+					 <{if $member.grade == 22}>
+						 <div class="col-md-4 desti-grid">
+							 <a class="example-image-link" href="<{$member.pic}>" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
+								 <div style="max-height: 250px;overflow: hidden">
+									 <img class="example-image" src="<{$member.pic}>" alt="暂无"/>
+								 </div>
+							 </a>
+							 <div class="desti-info">
+								 <h5><a href="#"><{$member.class}><{$member.name}></a></h5>
+								 <h6><{$member.skill}></h6>
+								 <p><{$member.description}></p>
+							 </div>
+						 </div>
+					 <{/if}>
+				 <{/foreach}>
+				 <div class="clearfix"></div>
+			 </div>
+			 <h3 class="member">21级</h3>
+			 <div class="destintn-grids">
+				 <{foreach $members as $member}>
+					 <{if $member.grade == 21}>
+						 <div class="col-md-4 desti-grid">
+							 <a class="example-image-link" href="<{$member.pic}>" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
+								 <div style="max-height: 250px;overflow: hidden">
+									 <img class="example-image" src="<{$member.pic}>" alt="暂无"/>
+								 </div>
+							 </a>
+							 <div class="desti-info">
+								 <h5><a href="#"><{$member.class}><{$member.name}></a></h5>
+								 <h6><{$member.skill}></h6>
+								 <p><{$member.description}></p>
+							 </div>
+						 </div>
+					 <{/if}>
+				 <{/foreach}>
+				 <div class="clearfix"></div>
+			 </div>
+			 <h3 class="member">20级</h3>
+			 <div class="destintn-grids">
+				 <{foreach $members as $member}>
+					 <{if $member.grade == 20}>
+						 <div class="col-md-4 desti-grid">
+							 <a class="example-image-link" href="<{$member.pic}>" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
+								 <div style="max-height: 250px;overflow: hidden">
+									 <img class="example-image" src="<{$member.pic}>" alt="暂无"/>
+								 </div>
+							 </a>
+							 <div class="desti-info">
+								 <h5><a href="#"><{$member.class}><{$member.name}></a></h5>
+								 <h6><{$member.skill}></h6>
+								 <p><{$member.description}></p>
+							 </div>
+						 </div>
+					 <{/if}>
+				 <{/foreach}>
+				 <div class="clearfix"></div>
+			 </div>
+			 <h3 class="member">19级</h3>
+			 <div class="destintn-grids">
+				 <{foreach $members as $member}>
+					 <{if $member.grade == 19}>
+						 <div class="col-md-4 desti-grid">
+							 <a class="example-image-link" href="<{$member.pic}>" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
+								 <div style="max-height: 250px;overflow: hidden">
+									 <img class="example-image" src="<{$member.pic}>" alt="暂无"/>
+								 </div>
+							 </a>
+							 <div class="desti-info">
+								 <h5><a href="#"><{$member.class}><{$member.name}></a></h5>
+								 <h6><{$member.skill}></h6>
+								 <p><{$member.description}></p>
+							 </div>
+						 </div>
+					 <{/if}>
+				 <{/foreach}>
+				 <div class="clearfix"></div>
+			 </div>
+			 <h3 class="member">18级</h3>
+			 <div class="destintn-grids">
+				 <{foreach $members as $member}>
+					 <{if $member.grade == 18}>
+						 <div class="col-md-4 desti-grid">
+							 <a class="example-image-link" href="<{$member.pic}>" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
+								 <div style="max-height: 250px;overflow: hidden">
+									 <img class="example-image" src="<{$member.pic}>" alt="暂无"/>
+								 </div>
+							 </a>
+							 <div class="desti-info">
+								 <h5><a href="#"><{$member.class}><{$member.name}></a></h5>
+								 <h6><{$member.skill}></h6>
+								 <p><{$member.description}></p>
+							 </div>
+						 </div>
+					 <{/if}>
+				 <{/foreach}>
+				 <div class="clearfix"></div>
+			 </div>
+			 <h3 class="member">17级</h3>
+			 <div class="destintn-grids">
+				 <{foreach $members as $member}>
+					 <{if $member.grade == 17}>
+						 <div class="col-md-4 desti-grid">
+							 <a class="example-image-link" href="<{$member.pic}>" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
+								 <div style="max-height: 250px;overflow: hidden">
+									 <img class="example-image" src="<{$member.pic}>" alt="暂无"/>
+								 </div>
+							 </a>
+							 <div class="desti-info">
+								 <h5><a href="#"><{$member.class}><{$member.name}></a></h5>
+								 <h6><{$member.skill}></h6>
+								 <p><{$member.description}></p>
+							 </div>
+						 </div>
+					 <{/if}>
+				 <{/foreach}>
+				 <div class="clearfix"></div>
+			 </div>
+
+
+
+		 </div>
+	</div>
+
+	<!-- footer -->
+	<div class="cqpc">
+		<div class="footer">
+			<div class="container">
+				<div class="footer-grids">
+					<div class="col-md-6 news-ltr">
+						<img style="margin-bottom: 20px" src="Public/home/images/cqpc.png" alt="">
+						<p style="margin: 20px 0;color: #F0F0EE">地址：重庆市沙坪坝区大学城景铮路</p>
+						<p style="margin: 20px 0;color: #F0F0EE">邮编：401331</p>
+
+					</div>
+					<div style="color: #F0F0EE" class="col-md-6 news-ltr">
+						<p style="margin: 20px 0;color: #F0F0EE">信息管理：重庆警察学院网侦研学社</p>
+						<p style="margin: 20px 0;color: #F0F0EE">技术维护：网侦研学社开发组</p>
+						<span>今日访问量：<{$visLog.today}></span>|
+						<span>昨日访问量：<{$visLog.yesterday}></span>|
+						<span>总访问量：<{$visLog.total}></span>|
+						<span>本月访问量：<{$visLog.month}></span>
+
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="copywrite">
+		<div class="container">
+			<p> © 2023 网侦研学社. All rights reserved</p>
+		</div>
+	</div>
+
+	<!---->
+	<script src="Public/home/JS/lightbox-plus-jquery.min.js"></script>
+	<!---->
+	<!--/animatedcss-->
+	<script type="text/javascript" src="Public/home/JS/easing.js"></script>
+
+	<script src="Public/home/JS/responsiveslides.min.js"></script>
+</body>
+<script>
+	//懒加载
+	let lazyImages = document.querySelectorAll('.lazy');
+	let observer = new IntersectionObserver(function(entries) {
+		entries.forEach(function(entry) {
+			if (entry.intersectionRatio > 0) {
+				entry.target.src = entry.target.dataset.src;
+				observer.unobserve(entry.target); // 加载后取消监听
+			}
+		});
+	});
+
+	lazyImages.forEach(function(lazyImage) {
+		observer.observe(lazyImage);
+	});
+</script>
+</html>

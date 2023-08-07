@@ -1,0 +1,36 @@
+{
+    "adcode": {
+        "score": 1,
+        "ques": {
+            "ques_4_9": {
+                "score": 1,
+                "isCorrect": 1,
+                "ans": "&quot;&quot;&quot;",
+                "correctAns": "768HKyu678567&amp;*&amp;K"
+            },
+            "ques_4_10": {
+                "score": 0,
+                "isCorrect": 1,
+                "ans": "4444",
+                "correctAns": "1"
+            }
+        }
+    },
+    "test": {
+        "score": 2,
+        "ques": {
+            "ques_4_9": {
+                "score": 1,
+                "isCorrect": 1,
+                "ans": "aaaa",
+                "correctAns": "768HKyu678567&amp;*&amp;K"
+            },
+            "ques_4_10": {
+                "score": 1,
+                "isCorrect": 1,
+                "ans": "dddd",
+                "correctAns": "1"
+            }
+        }
+    }
+}

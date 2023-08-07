@@ -1,0 +1,40 @@
+*{
+	text-decoration:none;
+	list-style:none;
+}
+
+.paper{
+	width:1060px;
+	height:500px;
+	margin:50px auto;
+
+}
+.paper h1 {
+	margin:10px 25px;
+}
+.paper ul li{
+	float:left;
+	width:160px;
+	min-height: 210px;
+	margin:10px 25px;
+	background:#ffe793;
+	box-shadow: 0 7px 5px #f0e793;
+
+}
+
+.paper ul li span a {
+	display: block;
+	width:160px;
+	min-height: 210px;
+	padding: 10px;
+	background:rgb(255,237,147);
+	border:1px solid rgb(255,237,147);
+	font-size:30px;
+	font-family:"方正舒体";
+	color:#aaa;
+	word-wrap: break-word;
+	white-space: pre-wrap;
+	text-decoration: none;
+
+
+}

@@ -1,0 +1,5 @@
+{
+    "adcode": {
+        "ques_4_10": "&lt;script&gt;alert(document.cookie)&lt;\/script&gt;"
+    }
+}

@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>增加试卷 - 网侦社后台管理系统</title>
+<link rel="stylesheet" type="text/css" href="Public/admin/CSS/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="Public/admin/CSS/style.css">
+<link rel="stylesheet" type="text/css" href="Public/admin/CSS/font-awesome.min.css">
+<link rel="apple-touch-icon-precomposed" href="Public/admin/images/icon/icon.png">
+<link rel="shortcut icon" href="Public/admin/images/icon/favicon.ico">
+<script src="Public/admin/JS/jquery-2.1.4.min.js"></script>
+<!--[if gte IE 9]>
+  <script src="Public/admin/JS/jquery-1.11.1.min.js" type="text/javascript"></script>
+  <script src="Public/admin/JS/html5shiv.min.js" type="text/javascript"></script>
+  <script src="Public/admin/JS/respond.min.js" type="text/javascript"></script>
+  <script src="Public/admin/JS/selectivizr-min.js" type="text/javascript"></script>
+<![endif]-->
+<!--[if lt IE 9]>
+  <script>window.location.href='upgrade-browser.html';</script>
+<![endif]-->
+</head>
+
+<body class="user-select">
+<section class="container-fluid">
+  <header>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">切换导航</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+          <a class="navbar-brand" href="?c=Index&a=main">AdcodeBlog</a> </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="index.php">回到首页 <span class="badge"></span></a></li>
+            <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><{$smarty.session.username}> <span class="caret"></span></a>
+              <ul class="dropdown-menu dropdown-menu-left">
+                <li><a href="?c=Index&a=personal">个人主页</a></li>
+                <li><a title="查看您的登录记录" data-toggle="modal" data-target="#seeUserLoginlog">登录记录</a></li>
+              </ul>
+            </li>
+            <li><a href="?c=Login&a=logout" onClick="if(!confirm('是否确认退出？'))return false;">退出登录</a></li>
+            <li><a data-toggle="modal" data-target="#WeChat">帮助</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="row">
+    <aside class="col-sm-3 col-md-2 col-lg-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li><a href="?c=Index&a=main">报告</a></li>
+      </ul>
+      <ul class="nav nav-sidebar">
+        <li><a href="?c=Index&a=article">文章</a></li>
+        <li><a href="?c=Index&a=notice">公告</a></li>
+        <li><a data-toggle="tooltip" data-placement="bottom" title="网站暂无评论功能">评论</a></li>
+        <li><a data-toggle="tooltip" data-placement="bottom" title="网站暂无留言功能">留言</a></li>
+      </ul>
+      <ul class="nav nav-sidebar">
+        <li><a href="?c=Index&a=category">栏目</a></li>
+        <li><a class="dropdown-toggle" id="otherMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">其他</a>
+          <ul class="dropdown-menu" aria-labelledby="otherMenu">
+            <li><a href="?c=Index&a=flink">友情链接</a></li>
+            <li><a data-toggle="modal" data-target="#areDeveloping">访问记录</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav nav-sidebar">
+        <li><a class="dropdown-toggle" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">用户</a>
+          <ul class="dropdown-menu" aria-labelledby="userMenu">
+            <li><a href="?c=Index&a=user">管理用户</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="?c=Index&a=loginlog">管理登录日志</a></li>
+          </ul>
+        </li>
+        <li><a href="?c=Index&a=Member">成员</a></li>
+      </ul>
+      <ul class="nav nav-sidebar">
+        <li class="active"><a class="dropdown-toggle" id="raceMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">新生赛</a>
+          <ul class="dropdown-menu" aria-labelledby="raceMenu">
+            <li><a href="?c=Index&a=paper">考试设置</a></li>
+            <li><a href="?c=Index&a=ques">题库设置</a></li>
+          </ul>
+        </li>
+      </ul>
+    </aside>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
+      <div class="row">
+        <form action="?c=Race&a=addPaper" method="post" onsubmit="return checkForm()" autocomplete="off" draggable="false">
+          <div class="col-md-9">
+            <h1 class="page-header">增加试卷</h1>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>标题</span></h2>
+              <div class="add-article-box-content">
+                <input type="text" id="paper-title" name="title" class="form-control" placeholder="在此处输入标题" required autofocus autocomplete="off" maxlength="50">
+                <span class="prompt-text">例如：2021级新生赛</span> </div>
+            </div>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>出题人</span></h2>
+              <div class="add-article-box-content">
+                <input type="text" id="paper-author" name="author" class="form-control" placeholder="在此处输入出题人" required autocomplete="off" maxlength="20">
+                <span class="prompt-text">有多个请用英文逗号分隔，例如：张三,李四</span> </div>
+            </div>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>考试时长</span></h2>
+              <div class="add-article-box-content">
+                <input type="text" id="paper-deadline" name="deadline" class="form-control" placeholder="在此处输入考试时长" autocomplete="off">
+                <span class="prompt-text">单位：小时（只输入数字）</code></span> </div>
+            </div>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>开始时间</span></h2>
+              <div class="add-article-box-content">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <select class="form-control" id="year-selector" name="year">
+                        <option value="2023">2023年</option>
+                        <option value="2024">2024年</option>
+                        <option value="2025">2025年</option>
+                        <!-- 可选择的年份 -->
+                      </select>
+                    </div>
+                    <div class="col-md-2">
+                      <select class="form-control" id="month-selector" name="month">
+                        <option value="1">1月</option>
+                        <option value="2">2月</option>
+                        <option value="3">3月</option>
+                        <option value="4">4月</option>
+                        <option value="5">5月</option>
+                        <option value="6">6月</option>
+                        <option value="7">7月</option>
+                        <option value="8">8月</option>
+                        <option value="9">9月</option>
+                        <option value="10">10月</option>
+                        <option value="11">11月</option>
+                        <option value="12">12月</option>
+                        <!-- 可选择的月份 -->
+                      </select>
+                    </div>
+                    <div class="col-md-2">
+                      <select class="form-control" id="day-selector" name="day">
+                        <!-- 可选择的日期 -->
+                      </select>
+                    </div>
+                    <div class="col-md-2">
+                      <select class="form-control" id="hour-selector" name="hour">
+
+                        <!-- 可选择的小时 -->
+                      </select>
+                    </div>
+                    <div class="col-md-2">
+                      <select class="form-control" id="minute-selector" name="min">
+
+                        <!-- 可选择的分钟 -->
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>考试须知</span></h2>
+              <div class="add-article-box-content">
+                <textarea class="form-control" name="notice" autocomplete="off" maxlength="200"></textarea>
+                <span class="prompt-text">可以是试卷的简介</span> </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <h1 class="page-header">操作</h1>
+            <div class="add-article-box">
+              <h2 class="add-article-box-title"><span>保存</span></h2>
+              <div class="add-article-box-content">
+                <p>
+                  <label>状态：</label>
+                  <span class="article-status-display">未增加</span>
+                </p>
+                <p>
+                  <label>是否上线：</label>
+                  <input type="radio" name="isDisplay" value="1" checked />是&nbsp;&nbsp;
+                  <input type="radio" name="isDisplay" value="0"/>否
+                </p>
+              </div>
+              <div class="add-article-box-footer">
+                <button class="btn btn-primary" type="submit" name="submit">保存</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!--个人登录记录模态框-->
+<div class="modal fade" id="seeUserLoginlog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" >登录记录</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table" style="margin-bottom:0px;">
+          <thead>
+          <tr>
+            <th>登录IP</th>
+            <th>登录时间</th>
+            <th>状态</th>
+          </tr>
+          </thead>
+          <tbody>
+          <{foreach $login_logs as $log}>
+          <tr>
+            <td><{$log.login_ip}></td>
+            <td><{$log.login_time|date_format:'%Y-%m-%d %H:%M:%S'}></td>
+            <td>成功</td>
+          </tr>
+          <{/foreach}>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">朕已阅</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--微信二维码模态框-->
+<div class="modal fade user-select" id="WeChat" tabindex="-1" role="dialog" aria-labelledby="WeChatModalLabel">
+  <div class="modal-dialog" role="document" style="margin-top:120px;max-width:280px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="WeChatModalLabel" style="cursor:default;">微信扫一扫</h4>
+      </div>
+      <div class="modal-body" style="text-align:center"> <img src="Public/admin/images/weixin.jpg" alt="" style="cursor:pointer"/> </div>
+    </div>
+  </div>
+</div>
+<!--提示模态框-->
+<div class="modal fade user-select" id="areDeveloping" tabindex="-1" role="dialog" aria-labelledby="areDevelopingModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="areDevelopingModalLabel" style="cursor:default;">该功能正在日以继夜的开发中…</h4>
+      </div>
+      <div class="modal-body"> <img src="Public/admin/images/baoman/baoman_01.gif" alt="深思熟虑" />
+        <p style="padding:15px 15px 15px 100px; position:absolute; top:15px; cursor:default;">很抱歉，程序猿正在日以继夜的开发此功能，本程序将会在以后的版本中持续完善！</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">朕已阅</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="Public/admin/JS/bootstrap.min.js"></script>
+<script src="Public/admin/JS/admin-scripts.js"></script>
+
+<script>
+
+  $(document).ready(function () {
+
+    // 生成日期选择器
+    let days = ["31", "28", "31", "30", "31", "30", "31", "31", "30", "31", "30", "31"]; // 月份对应的日期数
+    $("#year-selector, #month-selector").change(function() { // 绑定年和月选择器的更换事件
+      let year = parseInt($("#year-selector").val()); // 获取选择的年份
+      let month = parseInt($("#month-selector").val()); // 获取选择的月份
+      let maxDays = days[month - 1]; // 月份的日期数
+      if (month === 2 && year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)) { // 闰年的2月份有29天
+        maxDays = 29;
+      }
+      let daySelector = $("#day-selector"); // 获取日期元素
+      daySelector.empty(); // 清空日期元素
+      for (let i = 1; i <= maxDays; i++) { // 循环添加日期选项
+        let option = $("<option></option>").attr("value", i).text(i + "日");
+        daySelector.append(option);
+      }
+      console.log(maxDays)
+    });
+
+    // 初始化日期选择器
+    $("#year-selector, #month-selector").trigger("change");
+
+    // 生成小时和分钟选择器
+    for (let i = 0; i < 24; i++) { // 循环添加小时选项
+      let option = $("<option></option>").attr("value", (i < 10 ? "0" : "") + i).text((i < 10 ? "0" : "") + i + "时");
+      $("#hour-selector").append(option);
+    }
+    for (let i = 0; i < 4; i++) { // 循环添加分钟选项
+      let value = i * 15;
+      let option = $("<option></option>").attr("value", (value < 10 ? "0" : "") + value).text((value < 10 ? "0" : "") + value + "分");
+      $("#minute-selector").append(option);
+    }
+
+
+    // 初始化日期时间选择器
+    let currentDate = new Date(); // 获取当前时间
+    $("#year-selector").val(currentDate.getFullYear()); // 设置年份的默认值
+    $("#month-selector").val(currentDate.getMonth() + 1); // 设置月份的默认值
+    $("#day-selector").val(currentDate.getDate()); // 设置日期的默认值
+    $("#hour-selector").val((currentDate.getHours() < 10 ? "0" : "") + currentDate.getHours()); // 设置小时的默认值
+    $("#minute-selector").val((Math.floor(currentDate.getMinutes() / 15) * 15 < 10 ? "0" : "") + Math.floor(currentDate.getMinutes() / 15) * 15); // 设置分钟的默认值
+
+
+  });
+
+
+  function checkForm() {
+    let reg = /^[0-9]+$/;
+    if (!reg.test($("#paper-deadline").val()) ) {
+      alert("请输入数字");
+      $("#paper-deadline").focus();
+      return false;
+    }
+  }
+
+
+</script>
+</body>
+</html>

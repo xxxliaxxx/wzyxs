@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>登录 - 网侦社后台管理系统</title>
+<link rel="stylesheet" type="text/css" href="Public/admin/CSS/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="Public/admin/CSS/style.css">
+<link rel="stylesheet" type="text/css" href="Public/admin/CSS/login.css">
+<link rel="apple-touch-icon-precomposed" href="Public/admin/images/icon/icon.png">
+<link rel="shortcut icon" href="Public/admin/images/icon/favicon.ico">
+<script src="Public/admin/JS/jquery-2.1.4.min.js"></script>
+<!--[if gte IE 9]>
+  <script src="Public/admin/JS/jquery-1.11.1.min.js" type="text/javascript"></script>
+  <script src="Public/admin/JS/html5shiv.min.js" type="text/javascript"></script>
+  <script src="Public/admin/JS/respond.min.js" type="text/javascript"></script>
+  <script src="Public/admin/JS/selectivizr-min.js" type="text/javascript"></script>
+<![endif]-->
+<!--[if lt IE 9]>
+  <script>window.location.href='upgrade-browser.html';</script>
+<![endif]-->
+</head>
+
+<body class="user-select">
+<div class="container">
+  <div class="siteIcon"><img src="Public/admin/images/icon/icon.png" alt="" data-toggle="tooltip" data-placement="top" title="欢迎使用后台管理系统！" draggable="false" /></div>
+  <form action="?c=Login&a=loginCheck" method="post" autocomplete="off" class="form-signin" onsubmit="return checkForm()">
+    <h2 class="form-signin-heading">管理员登录</h2>
+    <label for="userName" class="sr-only">用户名</label>
+    <input type="text" id="userName" name="username" class="form-control" placeholder="请输入用户名" required autofocus autocomplete="off" maxlength="10">
+    <label for="userPwd" class="sr-only">密码</label>
+    <input type="password" id="userPwd" name="userpwd" class="form-control" placeholder="请输入密码" required autocomplete="off" maxlength="18">
+
+    <div id="captcha-box" class="form-control clearfix">
+      <label for="captcha" class="sr-only">验证码</label>
+      <input type="text" id="captcha" name="captcha" class="col-md-7" placeholder="请输入验证码" required autocomplete="off" maxlength="4">
+      <img class="col-md-5" id="captcha-img" src="?c=Login&a=captcha" onclick="this.src='?c=Login&a=captcha&' + Math.random()" alt="lost">
+    </div>
+
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit" name="submitButton" id="signinSubmit">登录</button>
+  </form>
+  <div class="footer">
+    <p><a href="index.php" data-toggle="tooltip" data-placement="left" title="不知道自己在哪?">回到首页 →</a></p>
+  </div>
+</div>
+<script src="Public/admin/JS/bootstrap.min.js"></script>
+<script>
+$('[data-toggle="tooltip"]').tooltip();
+window.oncontextmenu = function(){
+	//return false;
+};
+$('.siteIcon img').click(function(){
+	window.location.reload();
+});
+
+//初始设置用户名为当前焦点
+function setFocus() {
+    //获取用户名的输入框对象
+    let username = document.getElementsByClassName("userName");
+    if(username.value === ""){
+        username.focus();
+    }
+    else {
+        username.select();
+    }
+}
+
+//调用函数
+window.onload = setFocus;
+
+//前端表单验证
+function checkForm() {
+
+    if(!$("#userName").val()) {
+      window.alert("请输入用户名");
+       $("#userName").focus(); //重新定位光标
+      return false;
+    }
+    else if(!$("#userPwd").val()) {
+      window.alert("请输入密码");
+      $("#userPwd").focus(); //重新定位光标
+      return false;
+    }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>网侦研学社|个人主页</title>
+  <link rel="stylesheet" type="text/css" href="Public/admin/CSS/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="Public/admin/CSS/personal.css">
+  <link rel="apple-touch-icon-precomposed" href="Public/admin/images/icon/icon.png">
+  <link rel="shortcut icon" href="Public/admin/images/icon/favicon.ico">
+  <script src="Public/admin/JS/jquery-2.1.4.min.js"></script>
+</head>
+
+<body class="user-select">
+<nav class="main-navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="container">
+          <div class="menu menu-logo">
+            <a class="navbar-brand menu-title" href="?c=Index&a=rank" title="返回排行">
+              <img src="https://agougou-1257697582.cos.ap-chengdu.myqcloud.com/PictureBeds/202111281316429.jpg" height="45" style="margin: -15px -15px 35px 0px;" alt="网侦研学社后台">
+            </a>
+          </div>
+          <div class="collapse navbar-collapse" id="main-menu">
+            <ul class="menu">
+              <li class="nav-current"><a href="?c=Index&a=rank">返回</a></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<section class="content-wrap">
+  <div class="container">
+    <div class="row">
+      <main class="col-md-8 main-content">
+        <h4>
+          nothing yet
+        </h4>
+
+      </main>
+      <aside class="col-md-4 sidebar">
+        <div class="widget">
+          <h4 class="title">
+            "关于"
+          </h4>
+          <div class="card-bg" style="background-image: url(https://agougou-1257697582.cos.ap-chengdu.myqcloud.com/PictureBeds/202306021218072.jpg); ">
+
+          </div>
+          <div class="card">
+            <div class="card-info">
+              <img class="card-info-img" src="<{$user.pic}>" alt="">
+              <div class="card-info-name"><{$user.username}></div>
+              <div class="card-info-description"><{$user.signature}></div>
+            </div>
+            <div class="card-data">
+              <div class="card-data-item">
+                <div class="headline">文章</div>
+                <div class="length-num"><{$articleRows}></div>
+              </div>
+              <div class="card-data-item">
+                <div class="headline">参与考试</div>
+                <div class="length-num"><{$examRows}></div>
+              </div>
+              <div class="card-data-item">
+                <div class="headline">最高排名</div>
+                <div class="length-num"><{$maxRank}></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+<script src="Public/admin/JS/bootstrap.min.js"></script>
+<script src="Public/admin/JS/admin-scripts.js"></script>
+</body>
+</html>

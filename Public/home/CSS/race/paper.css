@@ -1,0 +1,95 @@
+.container {
+    padding: 0;
+}
+
+#countdown {
+    color: #ff431e;
+}
+
+#race .race-head{
+    background: #F0F0EE;
+    position: fixed;
+    z-index: 10;
+}
+#race .race-head .race-title{
+    float: left;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+.race-title ul {
+    list-style: none;
+}
+.race-title span {
+    font-size: 160%;
+}
+#race .race-head .race-submit {
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.intro {
+    background: #F0F0EE;
+    padding-top: 100px;
+}
+
+.ques {
+    background: rgba(255,255,255,0.5);
+    padding-top: 10px;
+}
+.ques .ques-title {
+    background: rgb(120,170,240);
+}
+.ques .ques-title span {
+    font-size: 120%;
+    display:block;
+    margin: 10px 15px;
+    font-weight: lighter;
+}
+.ques .ques-content {
+    border-top: 2px dashed rgb(120,170,240);
+}
+.ques .ques-content span {
+    display:block;
+    font-size:17px;
+    margin: 15px 10px;
+}
+.ques .ques-answer {
+    width: 95%;
+    margin-top: 5px;
+    margin-left: 20px
+}
+.ques .ques-answer label {
+    font-weight: normal;
+    cursor: pointer;
+}
+textarea, input{
+    resize: none;
+}
+
+.ques .ques-footer {
+    margin: 10px;
+}
+.ques .ques-footer span {
+    display: block;
+    padding: 5px;
+}
+.ques .ques-footer .correct:before {
+    content: "\2713";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+    margin-right: 5px;
+}
+.ques .ques-footer .wrong:before {
+    content: "\2717";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+#paper-table tr td:first-child {
+    text-align: left;
+}
+#paper-table tr td:last-child {
+    max-width: 200px
+}
